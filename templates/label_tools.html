@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+
+<body>
+    <h2>Labeling tools</h2>
+    <form method="post">
+      <div class="row">
+        <div class="col">
+          <input type="text" name="doc_name" class="form-control" placeholder="Enter document name"/>
+        </div>
+        <div class="col">
+          <input type="text" name="symbol_expr" class="form-control" placeholder="Enter symbol expression"/>
+        </div>
+        <div class="col">
+          <button type="submit" name="btn_name" class="btn btn-primary fullbtn" value="search"/>
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <form method="post">
+      <div class="row savebtns">
+        <div class="col">
+          <button type="submit" name="btn_name" class="btn btn-primary fullbtn" value="save_overall"/>
+            Save changes to overall json file
+          </button>
+        </div>
+        <div class="col">
+          <button type="submit" name="btn_name" class="btn btn-primary fullbtn" value="save_separate"/>
+            Save changes to separate json file
+          </button>
+        </div>
+        <div class="col">
+          <button type="submit" name="btn_name" class="btn btn-primary fullbtn" value="save_both"/>
+            Save changes to both
+          </button>
+        </div>
+      </div>
+      {% for sentence in sentence_list %}
+        <div class="card exprcard">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="prev_expr">... {{sentence.prev}}</div>
+                <div class="curr_expr">{{sentence.expr}}</div>
+                <div class="next_expr">{{sentence.next}} ...</div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label>Label</label>
+                  <input type="text" name="{{sentence.sentence_idx}}" class="form-control label-field" value="{{sentence.label}}" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </form>
+
+    {% include "footer.html" %}
+
+</body>
+</html>
